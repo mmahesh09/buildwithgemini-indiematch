@@ -1,0 +1,2855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IndieMatch — The High-Craft Marketplace for Freelancers & Clients</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<style>
+  /* ==========================================================================
+     PREMIUM DESIGN TOKEN SYSTEM (Apple-Quality Craft & 60-30-10 Restraint)
+     ========================================================================== */
+  :root {
+    /* Brand Accent (10%): Artisan British Racing Forest & Emerald */
+    --accent-primary: #0A5C36;
+    --accent-hover: #0D7545;
+    --accent-subtle: #E8F5EE;
+    --accent-border: #C2E7D2;
+    --brand-dark: #071F14;
+
+    /* Client / Employer Role Accent: Deep Navy & Indigo */
+    --client-accent: #1E3A8A;
+    --client-subtle: #EFF6FF;
+    --client-border: #BFDBFE;
+
+    /* Dominant Surfaces (60%): Warm tinted luxury neutrals (never zero-chroma) */
+    --bg-base: #F8F9FA;
+    --bg-page-tint: #F3F5F7;
+    --surface-card: #FFFFFF;
+    --surface-subtle: #F1F4F6;
+    --surface-elevated: #FFFFFF;
+
+    /* Hairline Structural Borders */
+    --border-subtle: rgba(15, 23, 42, 0.08);
+    --border-hover: rgba(10, 92, 54, 0.35);
+    --border-strong: rgba(15, 23, 42, 0.14);
+
+    /* Secondary Neutral Typography (30%) */
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #8E9BAE;
+
+    /* Ratings & Verification Accents */
+    --gold-star: #F59E0B;
+    --gold-subtle: #FEF3C7;
+
+    /* Multi-layered Soft Shadows (never harsh black) */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.06);
+    --shadow-card: 0 2px 8px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
+    --shadow-hover: 0 16px 32px -8px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+    --shadow-dock: 0 20px 40px -10px rgba(7, 31, 20, 0.12), 0 0 1px rgba(15, 23, 42, 0.1);
+
+    /* Intentional Border Radius Scale (No uniform AI radius) */
+    --r-tag: 4px;
+    --r-input: 8px;
+    --r-card: 14px;
+    --r-pill: 9999px;
+
+    /* Fluid Typography Hierarchy */
+    --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Purposeful Animation Tokens */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-fast: 150ms var(--ease-out-quart);
+    --transition-normal: 220ms var(--ease-out-quart);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ==========================================================================
+     TOP NAVIGATION (Frosted Glass & Apple-grade Micro-Craft)
+     ========================================================================== */
+  nav.indie-nav {
+    height: 72px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    position: relative;
+    z-index: 100;
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .brand-signature {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .brand-emblem {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--r-input);
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--brand-dark) 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    box-shadow: 0 2px 8px rgba(10, 92, 54, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .brand-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.35rem;
+    letter-spacing: -0.03em;
+    color: var(--brand-dark);
+  }
+  .brand-name span {
+    color: var(--accent-primary);
+  }
+
+  /* Segmented Marketplace Control (3 Modes) */
+  .segmented-control {
+    display: flex;
+    background: var(--surface-subtle);
+    padding: 3px;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .segment-btn {
+    padding: 0.45rem 1.15rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--r-pill);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all var(--transition-normal);
+  }
+
+  .segment-btn.active {
+    background: #FFFFFF;
+    color: var(--brand-dark);
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+  }
+
+  .segment-btn:hover:not(.active) {
+    color: var(--accent-primary);
+  }
+
+  .lounge-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10B981;
+    display: inline-block;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  }
+
+  /* Nav Universal Search */
+  .nav-center-search {
+    flex: 1;
+    max-width: 380px;
+    margin: 0 1.25rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-center-search input {
+    width: 100%;
+    height: 40px;
+    padding: 0 2.75rem 0 1.15rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-pill);
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    background: #FFFFFF;
+    color: var(--text-primary);
+    outline: none;
+    transition: all var(--transition-fast);
+  }
+
+  .nav-center-search input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(10, 92, 54, 0.1);
+  }
+
+  .nav-center-search button {
+    position: absolute;
+    right: 4px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast);
+  }
+  .nav-center-search button:hover {
+    background: var(--accent-hover);
+  }
+
+  /* Nav Right Utilities */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+  }
+
+  .trust-indicator-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .pulse-node {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-subtle);
+  }
+
+  .btn-craft-action {
+    padding: 0.5rem 1.15rem;
+    border-radius: var(--r-pill);
+    background: var(--brand-dark);
+    color: #FFFFFF;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+  .btn-craft-action:hover {
+    background: var(--accent-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-craft-action:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* ==========================================================================
+     CATEGORY SUBBAR (Horizontal Breathing Strip)
+     ========================================================================== */
+  .category-strip {
+    height: 46px;
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 0 2.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .category-strip::-webkit-scrollbar { display: none; }
+
+  .category-link {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.4rem 0;
+    position: relative;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+
+  .category-link:hover, .category-link.active {
+    color: var(--accent-primary);
+    font-weight: 600;
+  }
+
+  .category-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-primary);
+  }
+
+  /* ==========================================================================
+     MARKETPLACE WORKSPACE LAYOUT
+     ========================================================================== */
+  .marketplace-frame {
+    flex: 1;
+    display: flex;
+    max-width: 1540px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Sidebar Filters & Community Panel */
+  aside.craft-sidebar {
+    width: 330px;
+    background: #FFFFFF;
+    border-right: 1px solid var(--border-subtle);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    overflow-y: auto;
+  }
+
+  .sidebar-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .sidebar-header-row h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    letter-spacing: -0.01em;
+  }
+  .btn-reset-filters {
+    background: none;
+    border: none;
+    color: var(--accent-primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity var(--transition-fast);
+  }
+  .btn-reset-filters:hover {
+    text-decoration: underline;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.15rem;
+  }
+
+  .filter-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .stat-pill {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    background: var(--accent-subtle);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--accent-border);
+  }
+
+  /* Custom Clean Range Slider */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: var(--r-pill);
+    background: var(--surface-subtle);
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    cursor: pointer;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 1px 4px rgba(10, 92, 54, 0.4);
+    transition: transform var(--transition-fast);
+  }
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+
+  select, input[type="text"].filter-control {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-input);
+    background: #FFFFFF;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    outline: none;
+    transition: border var(--transition-fast);
+  }
+  select:focus, input[type="text"].filter-control:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(10, 92, 54, 0.08);
+  }
+
+  /* Apply CTA */
+  .btn-apply-filters {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--accent-primary);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--r-pill);
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all var(--transition-normal);
+    box-shadow: 0 2px 6px rgba(10, 92, 54, 0.25);
+  }
+  .btn-apply-filters:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+  .btn-apply-filters:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Quick Presets Pills */
+  .preset-pills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .preset-pill {
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--r-pill);
+    background: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  .preset-pill:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: #FFFFFF;
+    transform: translateY(-1px);
+  }
+
+  /* ==========================================================================
+     GLOBAL LOUNGE SIDEBAR COMPONENTS
+     ========================================================================== */
+  .identity-box {
+    background: var(--surface-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-card);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .identity-pill-selector {
+    display: flex;
+    background: #FFFFFF;
+    padding: 3px;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--border-subtle);
+  }
+  .identity-option-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border-radius: var(--r-pill);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+  }
+  .identity-option-btn.active.freelancer {
+    background: var(--accent-primary);
+    color: #FFFFFF;
+  }
+  .identity-option-btn.active.client {
+    background: var(--client-accent);
+    color: #FFFFFF;
+  }
+
+  .community-member-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.45rem 0.5rem;
+    border-radius: var(--r-input);
+    transition: background var(--transition-fast);
+    cursor: pointer;
+  }
+  .community-member-item:hover {
+    background: var(--surface-subtle);
+  }
+
+  .member-avatar-mini {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: #FFFFFF;
+    flex-shrink: 0;
+  }
+  .member-avatar-mini.freelancer {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--brand-dark) 100%);
+  }
+  .member-avatar-mini.client {
+    background: linear-gradient(135deg, var(--client-accent) 0%, #0F172A 100%);
+  }
+
+  .member-details {
+    flex: 1;
+    min-width: 0;
+  }
+  .member-name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .member-name {
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: var(--brand-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .member-role-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--r-pill);
+  }
+  .member-role-badge.client {
+    color: var(--client-accent);
+    background: var(--client-subtle);
+    border: 1px solid var(--client-border);
+  }
+  .member-role-badge.freelancer {
+    color: var(--accent-primary);
+    background: var(--accent-subtle);
+    border: 1px solid var(--accent-border);
+  }
+
+  /* ==========================================================================
+     MAIN RESULTS & CONVERSATION ARENA
+     ========================================================================== */
+  main.results-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-base);
+    overflow-y: auto;
+    position: relative;
+    scroll-behavior: smooth;
+  }
+
+  /* Above-the-fold Trust & Metric Banner (For Specialist & Lounge views) */
+  .hero-trust-bar {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1.15rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .hero-trust-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    letter-spacing: -0.02em;
+  }
+  .hero-subtitle {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+  }
+  .market-stats-row {
+    display: flex;
+    gap: 2rem;
+  }
+  .market-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .stat-number {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--brand-dark);
+  }
+  .stat-caption {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ==========================================================================
+     GRAND HERO SECTION & COMPLETE LANDING PAGE (Find Work Mode)
+     ========================================================================== */
+  .landing-hero-canvas {
+    background: radial-gradient(circle at 50% 0%, rgba(10, 92, 54, 0.07) 0%, rgba(248, 249, 250, 0.9) 65%), #FFFFFF;
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 3.5rem 2.5rem 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-eyebrow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.95rem;
+    border-radius: var(--r-pill);
+    background: #FFFFFF;
+    border: 1px solid var(--accent-border);
+    color: var(--accent-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1.35rem;
+    box-shadow: 0 2px 6px rgba(10, 92, 54, 0.08);
+  }
+
+  .hero-display-headline {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    color: var(--brand-dark);
+    max-width: 20ch;
+    margin-bottom: 1.15rem;
+  }
+  .hero-display-headline span {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, #108A00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-narrative-subhead {
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 64ch;
+    margin-bottom: 2.25rem;
+  }
+
+  /* Command Search Bar in Hero */
+  .hero-search-command-bar {
+    width: 100%;
+    max-width: 820px;
+    background: #FFFFFF;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    box-shadow: var(--shadow-hover);
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .hero-search-command-bar:focus-within {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 4px rgba(10, 92, 54, 0.12), var(--shadow-hover);
+  }
+
+  .hero-input-field {
+    flex: 1;
+    height: 48px;
+    border: none;
+    outline: none;
+    padding: 0 1.25rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    background: transparent;
+  }
+
+  .hero-select-field {
+    height: 44px;
+    border: none;
+    outline: none;
+    background: var(--surface-subtle);
+    padding: 0 0.85rem;
+    border-radius: var(--r-pill);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+
+  .btn-hero-search-submit {
+    height: 48px;
+    padding: 0 1.65rem;
+    background: var(--accent-primary);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--r-pill);
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all var(--transition-normal);
+    box-shadow: 0 2px 8px rgba(10, 92, 54, 0.3);
+  }
+  .btn-hero-search-submit:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(10, 92, 54, 0.4);
+  }
+  .btn-hero-search-submit:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .hero-trending-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+  }
+  .hero-tag-chip {
+    padding: 0.25rem 0.65rem;
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-pill);
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  .hero-tag-chip:hover {
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    background: var(--accent-subtle);
+  }
+
+  /* Key Metrics Strip */
+  .hero-proof-stats-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+    padding: 1.5rem 2rem;
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-card);
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 2rem;
+  }
+  .hero-proof-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-proof-num {
+    font-family: var(--font-mono);
+    font-weight: 800;
+    font-size: 1.55rem;
+    color: var(--brand-dark);
+  }
+  .hero-proof-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Trusted Scaleup Logos */
+  .hero-trusted-logos-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .hero-trusted-caption {
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  .hero-logos-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2.25rem;
+  }
+  .client-logo-badge {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #64748B;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  /* ==========================================================================
+     LANDING PAGE PILLARS & SECTIONS
+     ========================================================================== */
+  .landing-section {
+    padding: 3.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-headline {
+    font-family: var(--font-heading);
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--brand-dark);
+    letter-spacing: -0.025em;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-description {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 58ch;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Bento 4-Pillars Grid */
+  .bento-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .bento-pillar-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-card);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  }
+  .bento-pillar-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-hover);
+  }
+
+  .pillar-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--r-input);
+    background: var(--accent-subtle);
+    color: var(--accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    border: 1px solid var(--accent-border);
+  }
+
+  .pillar-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    letter-spacing: -0.015em;
+  }
+
+  .pillar-text {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  /* How It Works Steps */
+  .steps-roadmap-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .step-node-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-card);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    box-shadow: var(--shadow-card);
+    position: relative;
+  }
+
+  .step-number-tag {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    line-height: 1;
+  }
+
+  .step-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+  }
+
+  .step-body {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  /* Testimonials Grid */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .testimonial-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-card);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  .testimonial-quote {
+    font-size: 0.94rem;
+    line-height: 1.65;
+    color: var(--text-primary);
+    font-style: italic;
+  }
+
+  .testimonial-author-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1rem;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--accent-primary) 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: var(--font-heading);
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .author-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--brand-dark);
+  }
+  .author-role {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  /* Bottom Callout Banner */
+  .bottom-cta-banner {
+    width: 100%;
+    background: linear-gradient(135deg, var(--brand-dark) 0%, #0F3323 100%);
+    color: #FFFFFF;
+    border-radius: var(--r-card);
+    padding: 3.5rem 2.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-hover);
+  }
+
+  .bottom-cta-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .bottom-cta-subtitle {
+    font-size: 1rem;
+    color: #A7F3D0;
+    max-width: 52ch;
+    line-height: 1.6;
+  }
+
+  .bottom-cta-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .btn-cta-primary {
+    padding: 0.8rem 1.85rem;
+    border-radius: var(--r-pill);
+    background: #10B981;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.92rem;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+  .btn-cta-primary:hover {
+    background: #059669;
+    transform: translateY(-2px);
+  }
+
+  .btn-cta-secondary {
+    padding: 0.8rem 1.85rem;
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.92rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+  .btn-cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* ==========================================================================
+     ACTIVE STREAM & CHAT
+     ========================================================================== */
+  #feed-stream {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.75rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .feed-entry {
+    display: flex;
+    flex-direction: column;
+    max-width: 960px;
+    width: 100%;
+    animation: fadeUp 0.35s var(--ease-out-expo) forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .feed-entry.user { align-self: flex-end; }
+  .feed-entry.agent { align-self: flex-start; }
+
+  .msg-bubble {
+    padding: 0.95rem 1.25rem;
+    border-radius: var(--r-card);
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+  }
+  .feed-entry.user .msg-bubble {
+    background: var(--brand-dark);
+    color: #FFFFFF;
+    border: none;
+    border-bottom-right-radius: 4px;
+    box-shadow: var(--shadow-card);
+  }
+  .feed-entry.agent .msg-bubble.rich {
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     GLOBAL COMMUNITY CHAT MESSAGE BUBBLES
+     ========================================================================== */
+  .community-post-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-card);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    animation: fadeUp 0.35s var(--ease-out-expo) forwards;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .community-post-card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+  }
+  .community-post-card.highlight {
+    border-left: 4px solid var(--accent-primary);
+  }
+  .community-post-card.client-post {
+    border-left: 4px solid var(--client-accent);
+  }
+
+  .chat-sender-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--r-input);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
+  }
+  .chat-sender-avatar.freelancer {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--brand-dark) 100%);
+  }
+  .chat-sender-avatar.client {
+    background: linear-gradient(135deg, var(--client-accent) 0%, #0F172A 100%);
+  }
+
+  .chat-msg-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .chat-msg-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .chat-sender-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .chat-sender-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--brand-dark);
+  }
+
+  .chat-role-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.18rem 0.55rem;
+    border-radius: var(--r-pill);
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .chat-role-tag.client {
+    color: var(--client-accent);
+    background: var(--client-subtle);
+    border: 1px solid var(--client-border);
+  }
+  .chat-role-tag.freelancer {
+    color: var(--accent-primary);
+    background: var(--accent-subtle);
+    border: 1px solid var(--accent-border);
+  }
+
+  .chat-msg-time {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .chat-msg-content {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .chat-msg-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 0.4rem;
+  }
+  .chat-quick-action {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .chat-quick-action:hover {
+    text-decoration: underline;
+  }
+
+  /* ==========================================================================
+     CARDS DESIGN (Jobs & Talents)
+     ========================================================================== */
+  .indie-job-card, .indie-talent-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-card);
+    padding: 1.75rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+    box-shadow: var(--shadow-card);
+    position: relative;
+  }
+  .indie-job-card:hover, .indie-talent-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .job-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .verified-client-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    background: var(--accent-subtle);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--r-pill);
+    font-size: 0.78rem;
+    border: 1px solid var(--accent-border);
+  }
+
+  .job-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+  .job-card-title:hover {
+    color: var(--accent-primary);
+  }
+
+  .job-metrics-ribbon, .talent-performance-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--surface-subtle);
+    padding: 0.75rem 1.15rem;
+    border-radius: var(--r-input);
+    font-size: 0.88rem;
+    border: 1px solid rgba(15, 23, 42, 0.04);
+  }
+  .ribbon-metric strong, .talent-performance-bar strong {
+    color: var(--brand-dark);
+  }
+
+  .budget-badge {
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1rem;
+    background: #FFFFFF;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--r-input);
+    border: 1px solid var(--accent-border);
+  }
+
+  .job-description-text, .talent-bio-prose {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 82ch;
+  }
+
+  .skills-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .skill-chip {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--surface-subtle);
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--r-pill);
+    border: 1px solid var(--border-subtle);
+    transition: all var(--transition-fast);
+  }
+  .skill-chip:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: #FFFFFF;
+  }
+
+  .card-action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  .client-reputation-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+  }
+  .client-stars {
+    color: var(--gold-star);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-card-cta {
+    padding: 0.55rem 1.35rem;
+    background: var(--brand-dark);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--r-pill);
+    font-weight: 700;
+    font-size: 0.86rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+  .btn-card-cta:hover {
+    background: var(--accent-primary);
+    box-shadow: 0 4px 12px rgba(10, 92, 54, 0.25);
+    transform: translateY(-1px);
+  }
+  .btn-card-cta:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Talent profile details */
+  .talent-identity-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  .talent-avatar-crest {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--r-card);
+    background: linear-gradient(135deg, var(--brand-dark) 0%, #163628 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.35rem;
+    font-family: var(--font-heading);
+    box-shadow: 0 3px 10px rgba(7, 31, 20, 0.2);
+    flex-shrink: 0;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .online-beacon {
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    border: 2.5px solid #FFFFFF;
+    box-shadow: 0 0 0 2px var(--accent-subtle);
+  }
+  .talent-meta-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .talent-name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .talent-name {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    letter-spacing: -0.015em;
+  }
+  .talent-status-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--accent-subtle);
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-border);
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--r-pill);
+    letter-spacing: 0.05em;
+  }
+  .talent-title-line {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+  }
+  .talent-rate-callout {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+  }
+  .talent-rate-callout strong {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--brand-dark);
+    font-family: var(--font-mono);
+  }
+
+  /* ==========================================================================
+     CONVERSATIONAL DOCK
+     ========================================================================== */
+  .chat-dock {
+    padding: 1.15rem 2.5rem;
+    background: #FFFFFF;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    z-index: 50;
+  }
+
+  .concierge-input {
+    flex: 1;
+    height: 50px;
+    padding: 0 1.4rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-pill);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    outline: none;
+    background: var(--surface-subtle);
+    transition: all var(--transition-fast);
+  }
+  .concierge-input:focus {
+    background: #FFFFFF;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(10, 92, 54, 0.1);
+  }
+
+  .btn-dock-send {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    box-shadow: 0 2px 6px rgba(10, 92, 54, 0.25);
+  }
+  .btn-dock-send:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+  }
+  .btn-dock-send:active {
+    transform: scale(0.95);
+  }
+
+  /* Floating Quick Lounge Toggle (Bottom-Right) */
+  .floating-lounge-fab {
+    position: fixed;
+    bottom: 85px;
+    right: 2.5rem;
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-dock);
+    padding: 0.65rem 1.25rem;
+    border-radius: var(--r-pill);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    cursor: pointer;
+    z-index: 99;
+    transition: all var(--transition-normal);
+  }
+  .floating-lounge-fab:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.25rem;
+    vertical-align: middle;
+  }
+
+  /* Accessibility */
+  button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- High-Craft Top Navigation -->
+<nav class="indie-nav">
+  <div class="nav-left">
+    <div class="brand-signature" id="logo-refresh" title="IndieMatch — High-Craft Marketplace">
+      <div class="brand-emblem">im</div>
+      <div class="brand-name">Indie<span>Match</span></div>
+    </div>
+
+    <!-- Segmented Mode Control (3 Modes: Jobs, Freelancers, Global Lounge) -->
+    <div class="segmented-control" role="tablist" aria-label="Marketplace Perspective">
+      <button class="segment-btn active" id="btn-find-work" data-mode="jobs" role="tab" aria-selected="true">
+        <span class="material-symbols-outlined" style="font-size:1.1rem">work</span>
+        <span>Find Work</span>
+      </button>
+      <button class="segment-btn" id="btn-hire-talent" data-mode="freelancers" role="tab" aria-selected="false">
+        <span class="material-symbols-outlined" style="font-size:1.1rem">group</span>
+        <span>Hire Talent</span>
+      </button>
+      <button class="segment-btn" id="btn-global-lounge" data-mode="lounge" role="tab" aria-selected="false">
+        <span class="material-symbols-outlined" style="font-size:1.1rem">forum</span>
+        <span>Global Chat Session</span>
+        <span class="lounge-live-dot" title="Live Community Chat Active"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Universal High-Speed Search -->
+  <div class="nav-center-search">
+    <input type="text" id="nav-global-search" placeholder="Search by skill, title, or topic..." aria-label="Search">
+    <button id="btn-nav-search" title="Search Marketplace" aria-label="Submit search">
+      <span class="material-symbols-outlined" style="font-size:1.15rem">search</span>
+    </button>
+  </div>
+
+  <!-- Trust Badges & Action -->
+  <div class="nav-right">
+    <div class="trust-indicator-badge">
+      <div class="pulse-node"></div>
+      <span id="market-status-badge">Active Verified Network</span>
+    </div>
+    <button class="btn-craft-action" id="btn-quick-post">Post Opportunity</button>
+  </div>
+</nav>
+
+<!-- Service Categories Strip -->
+<div class="category-strip" id="category-strip-bar" role="navigation" aria-label="Service Categories">
+  <span class="category-link active" data-cat="All">All Disciplines</span>
+  <span class="category-link" data-cat="AI & ML">AI & Autonomous Agents</span>
+  <span class="category-link" data-cat="Development">Full-Stack & Systems Dev</span>
+  <span class="category-link" data-cat="Design">Design Systems & UI/UX</span>
+  <span class="category-link" data-cat="Cloud & DevOps">Cloud & Kubernetes</span>
+  <span class="category-link" data-cat="Security">Web3 & Cybersecurity</span>
+  <span class="category-link" data-cat="Marketing">Technical Writing & Growth</span>
+</div>
+
+<div class="marketplace-frame">
+  <!-- Precision Filter Sidebar & Lounge Panel -->
+  <aside class="craft-sidebar" id="craft-sidebar" aria-label="Marketplace Controls">
+
+    <!-- STANDARD FILTERS PANEL (Jobs & Freelancers Mode) -->
+    <div id="sidebar-filters-container" style="display:flex; flex-direction:column; gap:1.35rem;">
+      <div class="sidebar-header-row">
+        <h3 id="sidebar-heading">Filter Contracts</h3>
+        <button class="btn-reset-filters" id="btn-reset-filters">Reset all</button>
+      </div>
+
+      <!-- Country / Location Filter -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span id="label-location">Client Origin</span>
+        </div>
+        <select id="filter-country" class="filter-control">
+          <option value="All">Worldwide (All Locations)</option>
+          <option value="United States">United States</option>
+          <option value="Germany">Germany</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="Canada">Canada</option>
+          <option value="Singapore">Singapore</option>
+          <option value="Australia">Australia</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="France">France</option>
+        </select>
+      </div>
+
+      <!-- Pay Rate Slider -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span id="label-rate-title">Expected Hourly Rate</span>
+          <span class="stat-pill" id="rate-display">Any Rate</span>
+        </div>
+        <div style="padding: 0.35rem 0;">
+          <input type="range" id="filter-rate" min="0" max="150" step="5" value="0" aria-label="Hourly Rate">
+        </div>
+        <span style="font-size:0.75rem; color:var(--text-muted);" id="subtext-rate">Shows opportunities matching your pay baseline</span>
+      </div>
+
+      <!-- Budget Filter (Jobs View) -->
+      <div class="filter-group" id="section-budget">
+        <div class="filter-group-header">
+          <span>Minimum Project Budget</span>
+        </div>
+        <select id="filter-budget" class="filter-control">
+          <option value="0">Any Budget Size</option>
+          <option value="3000">$3,000+ USD</option>
+          <option value="5000">$5,000+ USD</option>
+          <option value="8000">$8,000+ USD</option>
+          <option value="12000">$12,000+ USD (High Ticket)</option>
+        </select>
+      </div>
+
+      <!-- Engagement Type (Jobs View) -->
+      <div class="filter-group" id="section-job-type">
+        <div class="filter-group-header">
+          <span>Engagement Model</span>
+        </div>
+        <select id="filter-type" class="filter-control">
+          <option value="All">All Engagement Models</option>
+          <option value="Contract">Hourly Contract</option>
+          <option value="Project">Fixed Deliverable</option>
+          <option value="Retainer">Monthly Retainer</option>
+        </select>
+      </div>
+
+      <button class="btn-apply-filters" id="btn-apply-filters">
+        <span class="material-symbols-outlined" style="font-size:1.15rem">tune</span>
+        <span id="btn-apply-caption">Search Matching Contracts</span>
+      </button>
+
+      <!-- Strategy Presets -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span>Curated Presets</span>
+        </div>
+        <div class="preset-pills-wrap" id="preset-chips"></div>
+      </div>
+    </div>
+
+    <!-- LOUNGE SIDEBAR PANEL (Global Chat Session Mode) -->
+    <div id="sidebar-lounge-container" style="display:none; flex-direction:column; gap:1.35rem;">
+      <div class="sidebar-header-row">
+        <h3>Lounge Controls</h3>
+        <span class="stat-pill" id="lounge-online-counter">18 Online</span>
+      </div>
+
+      <!-- User Identity Configuration -->
+      <div class="identity-box">
+        <span style="font-size:0.78rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.04em;">Your Identity</span>
+        <div class="identity-pill-selector">
+          <button class="identity-option-btn active freelancer" id="role-select-freelancer">⚡ Freelancer</button>
+          <button class="identity-option-btn" id="role-select-client">🏢 Client</button>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.35rem;">
+          <label for="input-display-name" style="font-size:0.78rem; font-weight:600; color:var(--text-secondary);">Display Name</label>
+          <input type="text" id="input-display-name" class="filter-control" value="Elena Rostova (AI Pro)" placeholder="Your Name or Company">
+        </div>
+      </div>
+
+      <!-- Lounge Channels -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span>Chat Channels</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.35rem;">
+          <div class="community-member-item" style="font-weight:700; color:var(--accent-primary);">
+            <span class="material-symbols-outlined" style="font-size:1.05rem;">tag</span>
+            <span style="font-size:0.86rem;">general-marketplace</span>
+          </div>
+          <div class="community-member-item" style="color:var(--text-secondary);">
+            <span class="material-symbols-outlined" style="font-size:1.05rem;">work</span>
+            <span style="font-size:0.86rem;">urgent-contracts</span>
+          </div>
+          <div class="community-member-item" style="color:var(--text-secondary);">
+            <span class="material-symbols-outlined" style="font-size:1.05rem;">attach_money</span>
+            <span style="font-size:0.86rem;">rates-and-scopes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Members Online -->
+      <div class="filter-group">
+        <div class="filter-group-header">
+          <span>Active In Lounge</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.5rem;" id="lounge-members-list">
+          <div class="community-member-item">
+            <div class="member-avatar-mini client">MV</div>
+            <div class="member-details">
+              <div class="member-name-row">
+                <span class="member-name">Marcus Vance</span>
+                <span class="member-role-badge client">Client</span>
+              </div>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Vance FinTech</span>
+            </div>
+          </div>
+          <div class="community-member-item">
+            <div class="member-avatar-mini client">DH</div>
+            <div class="member-details">
+              <div class="member-name-row">
+                <span class="member-name">David Hayes</span>
+                <span class="member-role-badge client">Client</span>
+              </div>
+              <span style="font-size:0.72rem; color:var(--text-muted);">HealthAI Labs</span>
+            </div>
+          </div>
+          <div class="community-member-item">
+            <div class="member-avatar-mini freelancer">SC</div>
+            <div class="member-details">
+              <div class="member-name-row">
+                <span class="member-name">Sarah Chen</span>
+                <span class="member-role-badge freelancer">Talent</span>
+              </div>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Design Systems Lead</span>
+            </div>
+          </div>
+          <div class="community-member-item">
+            <div class="member-avatar-mini freelancer">LT</div>
+            <div class="member-details">
+              <div class="member-name-row">
+                <span class="member-name">Liam Thorne</span>
+                <span class="member-role-badge freelancer">Talent</span>
+              </div>
+              <span style="font-size:0.72rem; color:var(--text-muted);">Kubernetes Architect</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Feed Stage & Live Concierge Workspace -->
+  <main class="results-stage" id="main-scroll-arena" aria-label="Marketplace Stage">
+
+    <!-- FIND WORK COMPLETE LANDING PAGE (Hero + Value Bento + Roadmap + Testimonials) -->
+    <div id="landing-page-container">
+      
+      <!-- GRAND HERO SECTION -->
+      <section class="landing-hero-canvas" aria-label="Find Work Hero">
+        <div class="hero-eyebrow-badge">
+          <span class="material-symbols-outlined" style="font-size:0.95rem;">verified</span>
+          <span>Verified Client Contracts · 100% Escrow Protected · 0% Fee Cuts</span>
+        </div>
+
+        <h1 class="hero-display-headline">
+          Work on Your Terms.<br>
+          Build for the <span>World's Best Clients</span>.
+        </h1>
+
+        <p class="hero-narrative-subhead">
+          IndieMatch connects elite independent engineers, autonomous AI specialists, and product designers directly with verified high-ticket contracts. Zero bidding wars, 100% upfront escrow, and direct client relationships.
+        </p>
+
+        <!-- Command Search Bar in Hero -->
+        <div class="hero-search-command-bar">
+          <span class="material-symbols-outlined" style="color:var(--text-muted); margin-left:0.75rem;">search</span>
+          <input type="text" id="hero-keyword-input" class="hero-input-field" placeholder="Job title, technical skill, or keywords (e.g. Next.js, AI Agent, GKE)...">
+          
+          <select id="hero-country-select" class="hero-select-field">
+            <option value="All">All Locations (Remote)</option>
+            <option value="United States">United States</option>
+            <option value="Germany">Germany</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Canada">Canada</option>
+            <option value="Singapore">Singapore</option>
+          </select>
+
+          <select id="hero-rate-select" class="hero-select-field">
+            <option value="0">Any Hourly Rate</option>
+            <option value="60">$60+/hr</option>
+            <option value="80">$80+/hr (High Yield)</option>
+            <option value="100">$100+/hr (Architect)</option>
+          </select>
+
+          <button class="btn-hero-search-submit" id="btn-hero-search">
+            <span>Find Contracts</span>
+            <span class="material-symbols-outlined" style="font-size:1rem;">arrow_forward</span>
+          </button>
+        </div>
+
+        <!-- Trending Skill Tags -->
+        <div class="hero-trending-tags-row">
+          <span>Trending disciplines:</span>
+          <span class="hero-tag-chip" data-search="AI & Autonomous Agents">🤖 Autonomous Agents</span>
+          <span class="hero-tag-chip" data-search="Next.js">⚡ Next.js 15</span>
+          <span class="hero-tag-chip" data-search="Cloud & DevOps">☁️ Kubernetes / GKE</span>
+          <span class="hero-tag-chip" data-search="Security">🛡️ Smart Contracts</span>
+          <span class="hero-tag-chip" data-search="Design">🎨 Design Systems</span>
+        </div>
+
+        <!-- Key Metrics Strip -->
+        <div class="hero-proof-stats-strip">
+          <div class="hero-proof-stat">
+            <span class="hero-proof-num">$2.4M+</span>
+            <span class="hero-proof-label">Paid to Builders</span>
+          </div>
+          <div class="hero-proof-stat">
+            <span class="hero-proof-num">100%</span>
+            <span class="hero-proof-label">Escrow Secured</span>
+          </div>
+          <div class="hero-proof-stat">
+            <span class="hero-proof-num">4.97 / 5</span>
+            <span class="hero-proof-label">Talent Rating</span>
+          </div>
+          <div class="hero-proof-stat">
+            <span class="hero-proof-num">&lt; 2 hrs</span>
+            <span class="hero-proof-label">Avg Response</span>
+          </div>
+        </div>
+
+        <!-- Scaleup Social Proof Logo Strip -->
+        <div class="hero-trusted-logos-area">
+          <span class="hero-trusted-caption">Contracts funded by forward-thinking teams worldwide</span>
+          <div class="hero-logos-cluster">
+            <div class="client-logo-badge"><span class="material-symbols-outlined" style="font-size:1.1rem;">account_balance</span> Vance FinTech</div>
+            <div class="client-logo-badge"><span class="material-symbols-outlined" style="font-size:1.1rem;">health_and_safety</span> HealthAI Labs</div>
+            <div class="client-logo-badge"><span class="material-symbols-outlined" style="font-size:1.1rem;">hub</span> Apex Distributed</div>
+            <div class="client-logo-badge"><span class="material-symbols-outlined" style="font-size:1.1rem;">cloud_done</span> CloudScale Global</div>
+            <div class="client-logo-badge"><span class="material-symbols-outlined" style="font-size:1.1rem;">smart_toy</span> Hyperion AI</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUE PROPOSITION BENTO GRID (Why Top Freelancers Choose IndieMatch) -->
+      <section class="landing-section" aria-label="Value Proposition">
+        <span class="section-eyebrow">Craft-First Architecture</span>
+        <h2 class="section-headline">Why the World's Best Independent Builders Choose IndieMatch</h2>
+        <p class="section-description">Traditional platforms force you into cut-rate price wars and take 20% of your earnings. IndieMatch is designed from the ground up for high-craft specialists.</p>
+
+        <div class="bento-pillars-grid">
+          <div class="bento-pillar-card">
+            <div class="pillar-icon-box"><span class="material-symbols-outlined">shield_with_heart</span></div>
+            <h3 class="pillar-title">100% Escrow Protection</h3>
+            <p class="pillar-text">Clients fund project milestones upfront before work begins. You never have to chase invoices or wonder if you will get paid.</p>
+          </div>
+
+          <div class="bento-pillar-card">
+            <div class="pillar-icon-box"><span class="material-symbols-outlined">savings</span></div>
+            <h3 class="pillar-title">Zero Commission Penalty</h3>
+            <p class="pillar-text">You keep 100% of your agreed billings. No platform 20% commission penalty eating into your earnings.</p>
+          </div>
+
+          <div class="bento-pillar-card">
+            <div class="pillar-icon-box"><span class="material-symbols-outlined">auto_awesome</span></div>
+            <h3 class="pillar-title">AI Proposal Concierge</h3>
+            <p class="pillar-text">Analyze client technical specifications and draft tailored, outcome-focused proposals in seconds with our integrated intelligence agent.</p>
+          </div>
+
+          <div class="bento-pillar-card">
+            <div class="pillar-icon-box"><span class="material-symbols-outlined">forum</span></div>
+            <h3 class="pillar-title">Real-Time Global Lounge</h3>
+            <p class="pillar-text">Skip recruiter gatekeepers. Talk directly with founders, CTOs, and peer specialists in our live community communication floor.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS ROADMAP -->
+      <section class="landing-section" style="background:#FFFFFF; border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle);" aria-label="How it works">
+        <span class="section-eyebrow">Predictable Workflow</span>
+        <h2 class="section-headline">Three Simple Steps to High-Yield Contracts</h2>
+        <p class="section-description">A streamlined path from discovering a project to receiving your first milestone payout.</p>
+
+        <div class="steps-roadmap-strip">
+          <div class="step-node-card">
+            <span class="step-number-tag">01</span>
+            <h3 class="step-title">Filter by Rate & Scope</h3>
+            <p class="step-body">Filter through vetted client contracts by hourly rate ($50–$150+/hr), minimum project budget, or engagement model. Zero spam listings.</p>
+          </div>
+
+          <div class="step-node-card">
+            <span class="step-number-tag">02</span>
+            <h3 class="step-title">Pitch With Precision</h3>
+            <p class="step-body">Use the AI concierge to generate bespoke technical pitches that highlight your exact past work, or engage clients directly in the Global Lounge.</p>
+          </div>
+
+          <div class="step-node-card">
+            <span class="step-number-tag">03</span>
+            <h3 class="step-title">Deliver & Get Paid Instantly</h3>
+            <p class="step-body">Upon milestone completion, locked escrow funds are released immediately with automated multi-currency payouts worldwide.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SECTION -->
+      <section class="landing-section" aria-label="Builder Stories">
+        <span class="section-eyebrow">Real Independent Builders</span>
+        <h2 class="section-headline">Hear From Elite Practitioners</h2>
+        <p class="section-description">How specialists are building independent, high-income careers on IndieMatch.</p>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"IndieMatch helped me transition from a corporate director role to making $22,000/month working 28 hours a week with 2 long-term enterprise AI clients. The upfront escrow gives total peace of mind."</p>
+            <div class="testimonial-author-row">
+              <div class="author-avatar">ER</div>
+              <div class="author-info">
+                <span class="author-name">Elena Rostova</span>
+                <span class="author-role">Principal AI & Autonomous Systems Architect</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"The zero-commission model saves me over $2,400 every single month compared to older platforms. Clients here respect technical depth and pay real market rates without haggling."</p>
+            <div class="testimonial-author-row">
+              <div class="author-avatar">LT</div>
+              <div class="author-info">
+                <span class="author-name">Liam Thorne</span>
+                <span class="author-role">Staff Cloud & Kubernetes Engineer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Within 3 days of joining, I was chatting directly with founders in the Global Lounge and closed a $14,000 design system project. The pitch generator is an incredible accelerator."</p>
+            <div class="testimonial-author-row">
+              <div class="author-avatar">SC</div>
+              <div class="author-info">
+                <span class="author-name">Sarah Chen</span>
+                <span class="author-role">Staff Front-End & Design Systems Lead</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GRAND BOTTOM CALLOUT BANNER -->
+        <div class="bottom-cta-banner">
+          <h2 class="bottom-cta-title">Ready to Secure Your Next High-Ticket Contract?</h2>
+          <p class="bottom-cta-subtitle">Join 8,000+ verified engineers, architects, and product designers building the future on IndieMatch.</p>
+          <div class="bottom-cta-btn-group">
+            <button class="btn-cta-primary" id="btn-banner-browse">Browse Live Contracts</button>
+            <button class="btn-cta-secondary" id="btn-banner-lounge">Enter Global Lounge</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- LIVE RESULTS & CONVERSATION FEED (Jobs, Freelancer Profiles, or Community Chat) -->
+    <div id="live-explorer-section" style="padding: 1.5rem 2.5rem 2.5rem 2.5rem; max-width: 1200px; width: 100%; margin: 0 auto;">
+      <div id="explorer-header-bar" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h2 id="explorer-section-title" style="font-family:var(--font-heading); font-size:1.4rem; font-weight:700; color:var(--brand-dark);">Active Open Contracts</h2>
+        <span class="stat-pill" id="explorer-count-badge">Curated Opportunities</span>
+      </div>
+
+      <div id="feed-stream" role="log" aria-live="polite"></div>
+    </div>
+
+    <!-- Bottom Dock Input -->
+    <div class="chat-dock">
+      <input class="concierge-input" id="market-prompt-input" placeholder="Ask AI concierge to draft a winning pitch, negotiate terms, or scope a custom build..." autocomplete="off">
+      <button class="btn-dock-send" id="btn-send-prompt" title="Send message">
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </div>
+  </main>
+</div>
+
+<!-- Floating Quick Lounge Toggle -->
+<div class="floating-lounge-fab" id="floating-lounge-btn" title="Open Global Chat Session">
+  <span class="lounge-live-dot"></span>
+  <span class="material-symbols-outlined" style="font-size:1.15rem; color:var(--accent-primary);">forum</span>
+  <span>Global Chat Session (18 Online)</span>
+</div>
+
+<script>
+let currentMode = "jobs"; // "jobs" | "freelancers" | "lounge"
+let selectedCategory = "All";
+let userRole = "freelancer"; // "freelancer" | "client"
+let userName = "Elena Rostova";
+let pollInterval = null;
+let communitySocket = null;
+let lastRenderedMessageIds = new Set();
+
+const feed = document.getElementById("feed-stream");
+const input = document.getElementById("market-prompt-input");
+const btnSend = document.getElementById("btn-send-prompt");
+const btnApply = document.getElementById("btn-apply-filters");
+const btnReset = document.getElementById("btn-reset-filters");
+const rateSlider = document.getElementById("filter-rate");
+const rateDisplay = document.getElementById("rate-display");
+const btnFindWork = document.getElementById("btn-find-work");
+const btnHireTalent = document.getElementById("btn-hire-talent");
+const btnGlobalLounge = document.getElementById("btn-global-lounge");
+const floatingLoungeBtn = document.getElementById("floating-lounge-btn");
+const sidebarFiltersContainer = document.getElementById("sidebar-filters-container");
+const sidebarLoungeContainer = document.getElementById("sidebar-lounge-container");
+const categoryStripBar = document.getElementById("category-strip-bar");
+const landingPageContainer = document.getElementById("landing-page-container");
+const mainScrollArena = document.getElementById("main-scroll-arena");
+const explorerSectionTitle = document.getElementById("explorer-section-title");
+const explorerCountBadge = document.getElementById("explorer-count-badge");
+
+const sidebarHeading = document.getElementById("sidebar-heading");
+const labelLocation = document.getElementById("label-location");
+const labelRateTitle = document.getElementById("label-rate-title");
+const subtextRate = document.getElementById("subtext-rate");
+const sectionBudget = document.getElementById("section-budget");
+const sectionJobType = document.getElementById("section-job-type");
+const btnApplyCaption = document.getElementById("btn-apply-caption");
+const presetChips = document.getElementById("preset-chips");
+const marketStatusBadge = document.getElementById("market-status-badge");
+const btnQuickPost = document.getElementById("btn-quick-post");
+const navGlobalSearch = document.getElementById("nav-global-search");
+const btnNavSearch = document.getElementById("btn-nav-search");
+
+const heroKeywordInput = document.getElementById("hero-keyword-input");
+const heroCountrySelect = document.getElementById("hero-country-select");
+const heroRateSelect = document.getElementById("hero-rate-select");
+const btnHeroSearch = document.getElementById("btn-hero-search");
+const btnBannerBrowse = document.getElementById("btn-banner-browse");
+const btnBannerLounge = document.getElementById("btn-banner-lounge");
+
+const roleSelectFreelancer = document.getElementById("role-select-freelancer");
+const roleSelectClient = document.getElementById("role-select-client");
+const inputDisplayName = document.getElementById("input-display-name");
+const loungeOnlineCounter = document.getElementById("lounge-online-counter");
+
+// Identity switcher in Lounge
+roleSelectFreelancer.addEventListener("click", () => {
+  userRole = "freelancer";
+  roleSelectFreelancer.className = "identity-option-btn active freelancer";
+  roleSelectClient.className = "identity-option-btn";
+  if (inputDisplayName.value.includes("Client")) {
+    inputDisplayName.value = "Elena Rostova (AI Pro)";
+  }
+  userName = inputDisplayName.value;
+});
+
+roleSelectClient.addEventListener("click", () => {
+  userRole = "client";
+  roleSelectClient.className = "identity-option-btn active client";
+  roleSelectFreelancer.className = "identity-option-btn";
+  if (inputDisplayName.value.includes("Elena")) {
+    inputDisplayName.value = "Horizon Ventures (Client)";
+  }
+  userName = inputDisplayName.value;
+});
+
+inputDisplayName.addEventListener("input", (e) => {
+  userName = e.target.value.trim() || (userRole === "client" ? "Client Founder" : "Freelance Pro");
+});
+
+// Mode Switcher (Jobs, Freelancers, Global Lounge)
+function setMode(mode) {
+  currentMode = mode;
+  btnFindWork.classList.toggle("active", mode === "jobs");
+  btnHireTalent.classList.toggle("active", mode === "freelancers");
+  btnGlobalLounge.classList.toggle("active", mode === "lounge");
+
+  btnFindWork.setAttribute("aria-selected", mode === "jobs");
+  btnHireTalent.setAttribute("aria-selected", mode === "freelancers");
+  btnGlobalLounge.setAttribute("aria-selected", mode === "lounge");
+
+  // Floating Lounge FAB visibility
+  floatingLoungeBtn.style.display = (mode === "lounge") ? "none" : "flex";
+
+  if (mode === "jobs") {
+    landingPageContainer.style.display = "block";
+    sidebarFiltersContainer.style.display = "flex";
+    sidebarLoungeContainer.style.display = "none";
+    categoryStripBar.style.display = "flex";
+    sidebarHeading.textContent = "Filter Contracts";
+    labelLocation.textContent = "Client Origin";
+    labelRateTitle.textContent = "Expected Hourly Rate";
+    subtextRate.textContent = "Shows opportunities matching your pay baseline";
+    sectionBudget.style.display = "flex";
+    sectionJobType.style.display = "flex";
+    btnApplyCaption.textContent = "Search Matching Contracts";
+    marketStatusBadge.textContent = "Verified Contracts Feed";
+    explorerSectionTitle.textContent = "Active Open Contracts";
+    explorerCountBadge.textContent = "Verified Escrow";
+    input.placeholder = "Ask AI concierge to draft a winning pitch, negotiate terms, or filter high-ticket contracts...";
+    renderJobPresets();
+    stopCommunityPolling();
+
+  } else if (mode === "freelancers") {
+    landingPageContainer.style.display = "none";
+    sidebarFiltersContainer.style.display = "flex";
+    sidebarLoungeContainer.style.display = "none";
+    categoryStripBar.style.display = "flex";
+    sidebarHeading.textContent = "Filter Specialists";
+    labelLocation.textContent = "Specialist Location";
+    labelRateTitle.textContent = "Max Hourly Budget";
+    subtextRate.textContent = "Shows verified elite practitioners within your budget";
+    sectionBudget.style.display = "none";
+    sectionJobType.style.display = "none";
+    btnApplyCaption.textContent = "Find Verified Specialists";
+    marketStatusBadge.textContent = "Elite Talent Directory";
+    explorerSectionTitle.textContent = "Verified Specialist Directory";
+    explorerCountBadge.textContent = "Top 3% Vetted";
+    input.placeholder = "Inquire about engaging a specialist, request timeline quotes, or define project scope...";
+    renderFreelancerPresets();
+    stopCommunityPolling();
+
+  } else if (mode === "lounge") {
+    landingPageContainer.style.display = "none";
+    sidebarFiltersContainer.style.display = "none";
+    sidebarLoungeContainer.style.display = "flex";
+    categoryStripBar.style.display = "none";
+    marketStatusBadge.textContent = "Global Chat Active";
+    explorerSectionTitle.textContent = "Live Community Lounge Stream";
+    explorerCountBadge.textContent = "Real-Time Broadcast";
+    input.placeholder = `Message the global session as ${userRole === "client" ? "🏢 Client" : "⚡ Freelancer"} (Enter to send)...`;
+
+    loadCommunityChat();
+    startCommunityPolling();
+  }
+}
+
+btnFindWork.addEventListener("click", () => {
+  setMode("jobs");
+  btnApply.click();
+  mainScrollArena.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+btnHireTalent.addEventListener("click", () => {
+  setMode("freelancers");
+  btnApply.click();
+  mainScrollArena.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+btnGlobalLounge.addEventListener("click", () => {
+  setMode("lounge");
+  mainScrollArena.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+floatingLoungeBtn.addEventListener("click", () => {
+  setMode("lounge");
+  mainScrollArena.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+btnBannerBrowse.addEventListener("click", () => {
+  document.getElementById("live-explorer-section").scrollIntoView({ behavior: "smooth" });
+});
+
+btnBannerLounge.addEventListener("click", () => {
+  setMode("lounge");
+});
+
+// Hero search handler
+btnHeroSearch.addEventListener("click", () => {
+  const keyword = heroKeywordInput.value.trim();
+  const country = heroCountrySelect.value;
+  const minRate = parseInt(heroRateSelect.value, 10);
+
+  // Sync to sidebar
+  document.getElementById("filter-country").value = country;
+  document.getElementById("filter-rate").value = minRate;
+  rateDisplay.textContent = minRate === 0 ? "Any Rate" : `$${minRate}/hr+`;
+
+  if (keyword) {
+    navGlobalSearch.value = keyword;
+  }
+  btnApply.click();
+  document.getElementById("live-explorer-section").scrollIntoView({ behavior: "smooth" });
+});
+
+// Trending chips in Hero
+document.querySelectorAll(".hero-tag-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    const val = chip.getAttribute("data-search");
+    if (val.includes("Agents") || val.includes("Cloud") || val.includes("Security") || val.includes("Design")) {
+      const matchLink = document.querySelector(`.category-link[data-cat="${val}"]`);
+      if (matchLink) matchLink.click();
+    } else {
+      heroKeywordInput.value = val;
+      btnHeroSearch.click();
+    }
+  });
+});
+
+function renderJobPresets() {
+  presetChips.innerHTML = `
+    <span class="preset-pill" data-prompt="Show all verified client contracts paying $80/hr or more worldwide">💎 $80+/hr Rate</span>
+    <span class="preset-pill" data-prompt="Find high-budget AI agent and automation client projects">🤖 AI Agent Contracts</span>
+    <span class="preset-pill" data-prompt="Show all active monthly retainers with clients worldwide">🔁 Monthly Retainers</span>
+    <span class="preset-pill" data-prompt="Estimate cost and timeline for a 40-hour React and FastAPI build">⏱️ Project Estimate</span>
+  `;
+  attachChipEvents();
+}
+
+function renderFreelancerPresets() {
+  presetChips.innerHTML = `
+    <span class="preset-pill" data-prompt="Find top-rated AI and Gemini ADK agents specialists ready to hire">🌟 Top Rated AI Architects</span>
+    <span class="preset-pill" data-prompt="Show verified front-end and design system engineers under $100/hr">🎨 UI/UX & React Pros</span>
+    <span class="preset-pill" data-prompt="Find certified Cloud and Kubernetes architects available now">☁️ Cloud Infrastructure</span>
+    <span class="preset-pill" data-prompt="Show Web3 and smart contract security auditors">🛡️ Security Auditors</span>
+  `;
+  attachChipEvents();
+}
+
+function attachChipEvents() {
+  presetChips.querySelectorAll(".preset-pill").forEach(chip => {
+    chip.addEventListener("click", () => handleUserMessage(chip.getAttribute("data-prompt")));
+  });
+}
+
+// Category filter
+document.querySelectorAll(".category-link").forEach(link => {
+  link.addEventListener("click", () => {
+    document.querySelectorAll(".category-link").forEach(l => l.classList.remove("active"));
+    link.classList.add("active");
+    selectedCategory = link.getAttribute("data-cat");
+    btnApply.click();
+  });
+});
+
+// Slider updates
+rateSlider.addEventListener("input", (e) => {
+  const val = parseInt(e.target.value, 10);
+  if (currentMode === "jobs") {
+    rateDisplay.textContent = val === 0 ? "Any Rate" : `$${val}/hr+`;
+  } else {
+    rateDisplay.textContent = val === 0 ? "Any Budget" : `≤$${val}/hr`;
+  }
+});
+
+function createEl(tag, className, text) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (text !== undefined && text !== null) el.textContent = text;
+  return el;
+}
+
+function appendBubble(role) {
+  const entry = createEl("div", "feed-entry " + role);
+  const bubble = createEl("div", "msg-bubble");
+  entry.appendChild(bubble);
+  feed.appendChild(entry);
+  feed.scrollTop = feed.scrollHeight;
+  return bubble;
+}
+
+// ============================================================================
+// GLOBAL COMMUNITY CHAT SYSTEM
+// ============================================================================
+
+function renderCommunityMessage(msg, prepend = false) {
+  if (lastRenderedMessageIds.has(msg.id)) return;
+  lastRenderedMessageIds.add(msg.id);
+
+  const card = createEl("div", `community-post-card ${msg.role === 'client' ? 'client-post' : 'highlight'}`);
+
+  const avatar = createEl("div", `chat-sender-avatar ${msg.role === 'client' ? 'client' : 'freelancer'}`, msg.avatar_initials || (msg.role === 'client' ? 'CL' : 'FL'));
+  card.appendChild(avatar);
+
+  const body = createEl("div", "chat-msg-body");
+
+  const header = createEl("div", "chat-msg-header");
+  const identity = createEl("div", "chat-sender-identity");
+  identity.appendChild(createEl("span", "chat-sender-title", msg.sender_name));
+
+  const roleTag = createEl("span", `chat-role-tag ${msg.role}`);
+  roleTag.innerHTML = msg.role === 'client' 
+    ? `<span class="material-symbols-outlined" style="font-size:0.85rem">business</span> Client`
+    : `<span class="material-symbols-outlined" style="font-size:0.85rem">bolt</span> Freelancer`;
+  identity.appendChild(roleTag);
+  header.appendChild(identity);
+
+  header.appendChild(createEl("span", "chat-msg-time", msg.time_display || "Just now"));
+  body.appendChild(header);
+
+  const content = createEl("div", "chat-msg-content", msg.text);
+  body.appendChild(content);
+
+  const actions = createEl("div", "chat-msg-actions");
+  const btnReply = createEl("button", "chat-quick-action", `@Reply to ${msg.sender_name.split(' ')[0]}`);
+  btnReply.onclick = () => {
+    input.value = `@${msg.sender_name.split(' ')[0]} `;
+    input.focus();
+  };
+  actions.appendChild(btnReply);
+
+  if (msg.role === 'client') {
+    const btnQuote = createEl("button", "chat-quick-action", "💼 Pitch Services");
+    btnQuote.onclick = () => {
+      input.value = `@${msg.sender_name.split(' ')[0]} I am available for this scope. My rate is $95/hr with direct references.`;
+      input.focus();
+    };
+    actions.appendChild(btnQuote);
+  }
+
+  body.appendChild(actions);
+  card.appendChild(body);
+
+  if (prepend && feed.firstChild) {
+    feed.insertBefore(card, feed.firstChild);
+  } else {
+    feed.appendChild(card);
+  }
+  feed.scrollTop = feed.scrollHeight;
+}
+
+async function loadCommunityChat() {
+  feed.innerHTML = "";
+  lastRenderedMessageIds.clear();
+
+  const notice = createEl("div", "feed-entry agent");
+  const bubble = createEl("div", "msg-bubble");
+  bubble.innerHTML = `
+    <div style="font-weight:700; color:var(--brand-dark); margin-bottom:0.35rem; display:flex; align-items:center; gap:0.5rem;">
+      <span class="lounge-live-dot"></span>
+      <span>Connected to Live Global Lounge Channel: #general-marketplace</span>
+    </div>
+    <div style="font-size:0.86rem; color:var(--text-secondary); line-height:1.5;">
+      Clients and freelancers can chat directly with zero delays. Switch your identity in the left sidebar to post as an employer or freelance specialist.
+    </div>
+  `;
+  notice.appendChild(bubble);
+  feed.appendChild(notice);
+
+  try {
+    const res = await fetch("/api/community/messages");
+    if (res.ok) {
+      const data = await res.json();
+      if (data.online_count) {
+        loungeOnlineCounter.textContent = `${data.online_count} Online`;
+        floatingLoungeBtn.querySelector("span:last-child").textContent = `Global Chat Session (${data.online_count} Online)`;
+      }
+      (data.messages || []).forEach(m => renderCommunityMessage(m));
+    }
+  } catch (err) {
+    console.warn("Could not load community messages", err);
+  }
+  connectCommunityWebSocket();
+}
+
+function connectCommunityWebSocket() {
+  if (communitySocket && communitySocket.readyState === WebSocket.OPEN) return;
+  const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+  const wsUrl = `${protocol}//${window.location.host}/ws/community`;
+  try {
+    communitySocket = new WebSocket(wsUrl);
+    communitySocket.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.type === "new_message" && data.message) {
+          if (currentMode === "lounge") {
+            renderCommunityMessage(data.message);
+          }
+        }
+      } catch (e) { console.error(e); }
+    };
+  } catch (e) {
+    console.warn("WebSocket fallback to polling", e);
+  }
+}
+
+function startCommunityPolling() {
+  stopCommunityPolling();
+  pollInterval = setInterval(async () => {
+    if (currentMode !== "lounge") return;
+    try {
+      const res = await fetch("/api/community/messages");
+      if (res.ok) {
+        const data = await res.json();
+        (data.messages || []).forEach(m => renderCommunityMessage(m));
+      }
+    } catch (e) {}
+  }, 2500);
+}
+
+function stopCommunityPolling() {
+  if (pollInterval) {
+    clearInterval(pollInterval);
+    pollInterval = null;
+  }
+}
+
+async function postGlobalMessage(text) {
+  if (!text) return;
+  input.value = "";
+
+  const payload = {
+    sender_name: userName || (userRole === "client" ? "Client Founder" : "Freelance Specialist"),
+    role: userRole,
+    text: text,
+    avatar_initials: (userName || "IM").split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase()
+  };
+
+  // Try WebSocket first
+  if (communitySocket && communitySocket.readyState === WebSocket.OPEN) {
+    communitySocket.send(JSON.stringify({
+      type: "send_message",
+      ...payload
+    }));
+  }
+
+  // REST post as robust guarantee
+  try {
+    const res = await fetch("/api/community/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.message) {
+        renderCommunityMessage(data.message);
+      }
+    }
+  } catch (err) {
+    console.error("Message send failure", err);
+  }
+}
+
+// Render Job Card
+function renderJobCard(job, container) {
+  const card = createEl("div", "indie-job-card");
+
+  const eyebrow = createEl("div", "job-eyebrow");
+  eyebrow.innerHTML = `
+    <span>Published recently · Worldwide (${job.remote_scope})</span>
+    <span class="verified-client-tag">
+      <span class="material-symbols-outlined" style="font-size:0.95rem">verified_user</span>
+      <span>Verified Escrow</span>
+    </span>
+  `;
+  card.appendChild(eyebrow);
+
+  const title = createEl("h2", "job-card-title", job.title);
+  card.appendChild(title);
+
+  const ribbon = createEl("div", "job-metrics-ribbon");
+  ribbon.innerHTML = `
+    <div class="ribbon-metric"><span>Budget:</span> <span class="budget-badge">${job.amount_display}</span></div>
+    <div class="ribbon-metric"><span>Engagement:</span> <strong>${job.job_type}</strong></div>
+    <div class="ribbon-metric"><span>Est. Duration:</span> <strong>${job.duration}</strong></div>
+    <div class="ribbon-metric"><span>Location:</span> <strong>${job.country}</strong></div>
+  `;
+  card.appendChild(ribbon);
+
+  const desc = createEl("p", "job-description-text", job.description);
+  card.appendChild(desc);
+
+  const skillsCluster = createEl("div", "skills-cluster");
+  (job.skills || []).forEach(s => skillsCluster.appendChild(createEl("span", "skill-chip", s)));
+  card.appendChild(skillsCluster);
+
+  const actionBar = createEl("div", "card-action-bar");
+  const clientStrip = createEl("div", "client-reputation-strip");
+  clientStrip.innerHTML = `
+    <span>Client: <strong>${job.client}</strong></span>
+    <span class="client-stars">★★★★★</span>
+    <span style="color:var(--text-muted);font-size:0.78rem;">(Verified Rating)</span>
+  `;
+  actionBar.appendChild(clientStrip);
+
+  const btnPitch = createEl("button", "btn-card-cta", "Draft Winning Pitch");
+  btnPitch.onclick = () => {
+    handleUserMessage(`I am applying for the '${job.title}' position posted by ${job.client}. Please draft an elite, outcome-focused pitch highlighting my technical craft and rate.`);
+  };
+  actionBar.appendChild(btnPitch);
+
+  card.appendChild(actionBar);
+  container.appendChild(card);
+}
+
+// Render Freelancer Card
+function renderTalentCard(f, container) {
+  const card = createEl("div", "indie-talent-card");
+
+  const header = createEl("div", "talent-identity-header");
+  const avatar = createEl("div", "talent-avatar-crest", f.avatar_initials || "IM");
+  avatar.appendChild(createEl("div", "online-beacon"));
+  header.appendChild(avatar);
+
+  const metaCol = createEl("div", "talent-meta-col");
+  const nameRow = createEl("div", "talent-name-row");
+  nameRow.appendChild(createEl("h2", "talent-name", f.name));
+  nameRow.appendChild(createEl("span", "talent-status-badge", f.badge));
+  metaCol.appendChild(nameRow);
+
+  metaCol.appendChild(createEl("div", "talent-title-line", f.title));
+  header.appendChild(metaCol);
+  card.appendChild(header);
+
+  const perfBar = createEl("div", "talent-performance-bar");
+  perfBar.innerHTML = `
+    <div>★ <strong>${f.rating}</strong> (${f.completed_projects} projects completed)</div>
+    <div>Location: <strong>${f.country}</strong></div>
+    <div>Rate: <strong style="color:var(--accent-primary)">${f.hourly_rate_display}</strong></div>
+    <div>Availability: <strong>${f.availability}</strong></div>
+  `;
+  card.appendChild(perfBar);
+
+  const bio = createEl("p", "talent-bio-prose", f.bio);
+  card.appendChild(bio);
+
+  const skillsCluster = createEl("div", "skills-cluster");
+  (f.skills || []).forEach(s => skillsCluster.appendChild(createEl("span", "skill-chip", s)));
+  card.appendChild(skillsCluster);
+
+  const footer = createEl("div", "card-action-bar");
+  const rateTag = createEl("div", "talent-rate-callout");
+  rateTag.innerHTML = `Billing Rate: <strong>${f.hourly_rate_display}</strong>`;
+  footer.appendChild(rateTag);
+
+  const btnHire = createEl("button", "btn-card-cta", "Engage Specialist");
+  btnHire.onclick = () => {
+    handleUserMessage(`I want to engage ${f.name} for our upcoming ${f.category} project. They bill at ${f.hourly_rate_display}. Let's outline the brief and confirm scope.`);
+  };
+  footer.appendChild(btnHire);
+
+  card.appendChild(footer);
+  container.appendChild(card);
+}
+
+// Agent Communication
+async function handleUserMessage(text) {
+  if (!text) return;
+  appendBubble("user").textContent = text;
+  input.value = "";
+  const agentBubble = appendBubble("agent");
+  agentBubble.textContent = "Consulting IndieMatch intelligence concierge...";
+
+  try {
+    const res = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text })
+    });
+    const raw = await res.text();
+    let data;
+    try { data = JSON.parse(raw); }
+    catch { throw new Error(`Unexpected server response.`); }
+
+    agentBubble.textContent = "";
+    const texts = (data.parts || []).filter(p => p && (p.kind === "text" || (!p.kind && p.text))).map(p => p.text || "");
+    const reply = texts.join("\n").trim();
+    if (reply) agentBubble.appendChild(createEl("div", null, reply));
+    if (!agentBubble.childNodes.length) agentBubble.textContent = "Ready to assist with your marketplace request.";
+    feed.scrollTop = feed.scrollHeight;
+  } catch (err) {
+    agentBubble.textContent = "Error: " + err.message;
+  }
+}
+
+// Input submit dispatcher
+function handleSendAction() {
+  const val = input.value.trim();
+  if (!val) return;
+  if (currentMode === "lounge") {
+    postGlobalMessage(val);
+  } else {
+    handleUserMessage(val);
+  }
+}
+
+btnSend.addEventListener("click", handleSendAction);
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") handleSendAction();
+});
+
+// Apply Filters
+btnApply.addEventListener("click", async () => {
+  const country = document.getElementById("filter-country").value;
+  const rate = parseInt(document.getElementById("filter-rate").value, 10);
+  const budget = document.getElementById("filter-budget").value;
+  const type = document.getElementById("filter-type").value;
+
+  if (currentMode === "jobs") {
+    const activeFilters = [];
+    if (country !== "All") activeFilters.push(country);
+    if (rate > 0) activeFilters.push(`≥$${rate}/hr`);
+    if (parseInt(budget, 10) > 0) activeFilters.push(`≥$${budget} budget`);
+    if (type !== "All") activeFilters.push(type);
+    if (selectedCategory !== "All") activeFilters.push(selectedCategory);
+
+    feed.innerHTML = "";
+    const loader = appendBubble("agent");
+    loader.textContent = "Querying verified contracts across the network...";
+
+    try {
+      const params = new URLSearchParams({
+        country: country,
+        min_amount: budget,
+        min_hourly_rate: rate,
+        job_type: type,
+        category: selectedCategory,
+      });
+      const res = await fetch(`/api/jobs?${params.toString()}`);
+      if (res.ok) {
+        const data = await res.json();
+        feed.innerHTML = "";
+
+        explorerCountBadge.textContent = `${data.count} Verified Opportunities`;
+
+        if (data.jobs && data.jobs.length > 0) {
+          data.jobs.forEach(j => renderJobCard(j, feed));
+        } else {
+          const noMatch = appendBubble("agent");
+          noMatch.textContent = "No direct contracts matched these exact criteria. Try broadening your pay rate or country filters!";
+        }
+        return;
+      }
+    } catch (err) {
+      console.warn("Fallback to chat", err);
+    }
+    handleUserMessage(`Search freelance jobs in ${country} with expected rate $${rate}/hr in ${selectedCategory}`);
+
+  } else if (currentMode === "freelancers") {
+    const activeFilters = [];
+    if (country !== "All") activeFilters.push(country);
+    if (rate > 0) activeFilters.push(`≤$${rate}/hr`);
+    if (selectedCategory !== "All") activeFilters.push(selectedCategory);
+
+    feed.innerHTML = "";
+    const loader = appendBubble("agent");
+    loader.textContent = "Querying verified specialist directory...";
+
+    try {
+      const params = new URLSearchParams({
+        country: country,
+        max_hourly_rate: rate > 0 ? rate : 999999,
+        category: selectedCategory,
+      });
+      const res = await fetch(`/api/freelancers?${params.toString()}`);
+      if (res.ok) {
+        const data = await res.json();
+        feed.innerHTML = "";
+        explorerCountBadge.textContent = `${data.count} Vetted Specialists`;
+
+        if (data.freelancers && data.freelancers.length > 0) {
+          data.freelancers.forEach(f => renderTalentCard(f, feed));
+        } else {
+          const noMatch = appendBubble("agent");
+          noMatch.textContent = "No specialist profiles matched this rate cap. Try raising the slider budget!";
+        }
+        return;
+      }
+    } catch (err) {
+      console.warn("Fallback to chat", err);
+    }
+    handleUserMessage(`Find top freelance talent in ${country} with rate under $${rate}/hr in ${selectedCategory}`);
+  }
+});
+
+// Clear Filters
+btnReset.addEventListener("click", () => {
+  document.getElementById("filter-country").value = "All";
+  document.getElementById("filter-rate").value = "0";
+  rateDisplay.textContent = "Any Rate";
+  document.getElementById("filter-budget").value = "0";
+  document.getElementById("filter-type").value = "All";
+  selectedCategory = "All";
+  document.querySelectorAll(".category-link").forEach(l => l.classList.remove("active"));
+  document.querySelector('.category-link[data-cat="All"]').classList.add("active");
+  btnApply.click();
+});
+
+// Global Nav Search
+function triggerNavSearch() {
+  const query = navGlobalSearch.value.trim();
+  if (!query) return;
+  if (currentMode === "lounge") {
+    input.value = query;
+    postGlobalMessage(query);
+  } else if (currentMode === "jobs") {
+    heroKeywordInput.value = query;
+    btnHeroSearch.click();
+  } else {
+    handleUserMessage(`Find verified freelance specialists with skill or background in '${query}'`);
+  }
+}
+btnNavSearch.addEventListener("click", triggerNavSearch);
+navGlobalSearch.addEventListener("keydown", (e) => { if (e.key === "Enter") triggerNavSearch(); });
+
+// Quick Post Opportunity Button
+btnQuickPost.addEventListener("click", () => {
+  setMode("lounge");
+  userRole = "client";
+  roleSelectClient.click();
+  input.value = "We are hiring for an immediate contract! Project scope: ";
+  input.focus();
+});
+
+// Refresh on Logo Click
+document.getElementById("logo-refresh").addEventListener("click", () => {
+  setMode("jobs");
+  btnApply.click();
+  mainScrollArena.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Init
+window.addEventListener("DOMContentLoaded", () => {
+  setMode("jobs");
+  btnApply.click();
+});
+</script>
+</body>
+</html>
